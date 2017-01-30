@@ -56,15 +56,23 @@ public class Archivos {
 			int tamaño=nueva.length;
 			int instrucciones=Integer.parseInt(nueva[2]);
 			int dato=Integer.parseInt(nueva[3]);
-			for(int i=4;i<tamaño;i++){
+			int i;
+			for(i=4;i<tamaño;i++){
 				if ( nueva[i].charAt(0) != 48) {
 					System.out.println(instrucciones+" "+"COD: "+nueva[i].charAt(0)+ " "+"Dir: "+nueva[i].charAt(1)+nueva[i].charAt(2)+nueva[i].charAt(3));
 					instrucciones++;
 				} else {
-					System.out.println("Datos:");
-					System.out.println(dato+"  "+"Valor: "+nueva[i]);
-					dato++;
+					break;
 				}
 			}
+			
+			System.out.println("Datos:");
+			for (; i < tamaño;i++) {
+				System.out.println(dato+"  "+"Valor: "+nueva[i]);
+				dato++;
+			}
 		}
+
+
+
 }
