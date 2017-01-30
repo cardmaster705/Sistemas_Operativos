@@ -48,24 +48,25 @@ public class Archivos {
 		
 		public void split(String nuevacadena){
 		String nueva[]=texto.split("\\s");
-		
 		System.out.println("N° de instrucciones :"+nueva[0]);
 		System.out.println("N° de datos :"+nueva[1]);
 		System.out.println("N° inicial de instrucciones :"+nueva[2]);
 		System.out.println("N° inicial de datos :"+nueva[3]);
 		System.out.println("INSTRUCCIONES");
-		
-		int instrucciones=Integer.parseInt(nueva[2]);
-		int datos=Integer.parseInt(nueva[3]);
-		int elementos= nueva.length;
-		
-		for(int i=0;i<elementos;i++){
-		if(nueva[4+i].charAt(0)!=0){
+		int tamaño=nueva.length;
+		for(int i=0;i<tamaño;i++){
+			if(nueva[i].length()>3&&nueva[i].charAt(0)!=48){
 			
-			System.out.println(instrucciones+i+"	"+ "Cod:"+nueva[4+i].charAt(0)+"	"+"Dir: "+nueva[4+i].charAt(1)+nueva[4+i].charAt(2)+nueva[4+i].charAt(3));
-		
+			
+			int instrucciones=Integer.parseInt(nueva[2]);
+			
+			System.out.println(instrucciones+i+" "+"COD: "+nueva[i].charAt(0)+ " "+"Dir: "+nueva[i].charAt(1)+nueva[i].charAt(2)+nueva[i].charAt(3));
 		}
+			else if(nueva[i].charAt(0)==48){
+				int dato=Integer.parseInt(nueva[3]);
+				System.out.println("Datos:");
+				System.out.println(dato+i+"  "+"Valor: "+nueva[i]);
+			}
 		}
 		}
 }
-	
