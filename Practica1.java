@@ -1,4 +1,4 @@
-package nuevo;
+package proyecto1;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.nio.file.Path;
