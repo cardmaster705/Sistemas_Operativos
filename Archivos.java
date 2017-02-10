@@ -1,4 +1,4 @@
-package proyecto1;
+package nuevo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,14 +10,14 @@ import java.util.StringTokenizer;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 public class Archivos {
-		String instruccion[][]= new String[10][10];
+		String instruccion[][]= new String[10][3];
 		int iInstruccion=0;
 	
 		String datosm[][]= new String[10][10];
 		int dDatos=0;
 		String texto="";
 		String temp;
-		int acumulador=0;
+		int acumulador;
 		public String leerArchivos(){
 		
 			JFileChooser buscador= new JFileChooser();
@@ -27,7 +27,7 @@ public class Archivos {
 				BufferedReader bf = new BufferedReader(new FileReader(patch));
 				String temp="";
 				String bfRead;
-				String file = patch.substring(27);
+				String file = patch.substring(49);
 				System.out.println("Archivo:"+file);
 				while((bfRead= bf.readLine())!= null){
 					temp=temp+bfRead+"\n";
@@ -57,19 +57,21 @@ public class Archivos {
 			
 			
 			String nueva[]=texto.split("\\s");
-			System.out.println("NÂ° de instrucciones :"+nueva[0]);
-			System.out.println("NÂ° de datos :"+nueva[1]);
-			System.out.println("NÂ° inicial de instrucciones :"+nueva[2]);
-			System.out.println("NÂ° inicial de datos :"+nueva[3]);
+			System.out.println("N° de instrucciones :"+nueva[0]);
+			System.out.println("N° de datos :"+nueva[1]);
+			System.out.println("N° inicial de instrucciones :"+nueva[2]);
+			System.out.println("N° inicial de datos :"+nueva[3]);
 			System.out.println("INSTRUCCIONES");
-			int tamaÃ±o=nueva.length;
+			int dato2=Integer.parseInt(nueva[1]);
+			int tamaño=nueva.length;
 			int instrucciones=Integer.parseInt(nueva[2]);
 			int dato=Integer.parseInt(nueva[3]);
 			int i;
-			for(i=4;i<tamaÃ±o;i++){
+			for(i=4;i<tamaño;i++){
 				if ( nueva[i].charAt(1) != 48) {
 					System.out.println(instrucciones+" "+"COD: "+nueva[i].charAt(0)+ " "+"Dir: "+nueva[i].charAt(1)+nueva[i].charAt(2)+nueva[i].charAt(3));
 					instruccion[iInstruccion][0]=String.valueOf(instrucciones);
+					instruccion[iInstruccion][2]="sin usar";
 					instruccion[iInstruccion++][1]=nueva[i];
 					instrucciones++;
 					//System.out.println(instruccion[iInstruccion-1]);
@@ -79,7 +81,7 @@ public class Archivos {
 			}
 			
 			System.out.println("Datos:");
-			for (; i < tamaÃ±o;i++) {
+			for (; i < tamaño;i++) {
 				System.out.println(dato+"  "+"Valor: "+nueva[i]);
 				
 				datosm[dDatos][0] = String.valueOf(dato);
@@ -89,62 +91,76 @@ public class Archivos {
 			}
 			
 			System.out.println("ejecutando");
+			System.out.println("PC: |"+"IR: |"+"AC: |");
 			
 			for(int i2=0;i2<iInstruccion;i2++){
-				
+				int direcciona;
+				int direcciond;
 				switch(instruccion[i2][1].charAt(0)){
 				case '0':
-					
+					if(instruccion[i2][2].equals("sin usar")){
+					direcciona=Integer.parseInt(instruccion[i2][0]);
+					direcciond=Integer.parseInt(instruccion[i2][1].substring(1));
+					System.out.println(String.valueOf(instruccion[i2][0]+"  "+instruccion[i2][1]+"  "+acumulador+"\n"));
+					instruccion[i2][2]="ejecutado";
+					i2=i2+(direcciond-direcciona)-1;
+					}
 					break;
 				case '1':
 					acumulador=Integer.parseInt(buscarDato(instruccion[i2][1].substring(1)));
-					System.out.println(acumulador);
+					
+		            	System.out.println(String.valueOf(instruccion[i2][0]+"  "+instruccion[i2][1]+"  "+acumulador+"\n"));
+		            
 					break;
 					
 				case '2':
 					ponDato(instruccion[i2][1].substring(1),String.valueOf(acumulador));
-					System.out.println(acumulador);
-					
+					System.out.println(String.valueOf(instruccion[i2][0]+"  "+instruccion[i2][1]+"  "+acumulador+"\n"));
 					break;
 				case '3':
 					sumaDato(instruccion[i2][1].substring(1),acumulador);
-					System.out.println(acumulador);
+					System.out.println(String.valueOf(instruccion[i2][0]+"  "+instruccion[i2][1]+"  "+acumulador+"\n"));
 					break;
 				case '4':
 					restaDato(instruccion[i2][1].substring(1),acumulador);
-					System.out.println(acumulador);
-
+					System.out.println(String.valueOf(instruccion[i2][0]+"  "+instruccion[i2][1]+"  "+acumulador+"\n"));
 					break;
 				case '5':
 					multiplicaDato(instruccion[i2][1].substring(1),acumulador);
-					System.out.println(acumulador);
-
+					System.out.println(String.valueOf(instruccion[i2][0]+"  "+instruccion[i2][1]+"  "+acumulador+"\n"));
 					break;
 				case '6':
 					divideDato(instruccion[i2][1].substring(1),acumulador);
-					System.out.println(acumulador);
-
+					System.out.println(String.valueOf(instruccion[i2][0]+"  "+instruccion[i2][1]+"  "+acumulador+"\n"));
 					break;
 				case '7':
 					abrirArchivotxt();
-					System.out.println(acumulador);
+					System.out.println(String.valueOf(instruccion[i2][0]+"  "+instruccion[i2][1]+"  "+acumulador+"\n"));
 					break;
 					
 				case '8':
 					crearArchivotxt();
-					System.out.println("se ha creado el archivo con el acumulador con exito");
+					System.out.println(String.valueOf(instruccion[i2][0]+"  "+instruccion[i2][1]+"  "+acumulador+"\n"));
 					break;
 				case '9':
 					crearSecundariotxt();
-					System.out.println("se creo el archivo secundario.txt con exito");
+					System.out.println(String.valueOf(instruccion[i2][0]+"  "+instruccion[i2][1]+"  "+acumulador+"\n"));
 					break;
 				default:
 					System.out.println("error");
 					break;
 				}
+				System.out.println("Datos: ");
+			for(int j=0;j<dato2;j++){
 				
+				System.out.println(datosm[j][0]+" "+datosm[j][1]);
 				
 			}
+			System.out.println("______________________________________________:)");
+			System.out.println("PC: |"+"IR: |"+"AC: |");
+			}
+			
+			
 		}
 
 		String buscarDato(String busqueda){
@@ -218,6 +234,7 @@ public class Archivos {
 			            bw.write(String.valueOf(acumulador));
 			        } else {
 			            bw = new BufferedWriter(new FileWriter(archivo));
+			           
 			            bw.write(acumulador);
 			        }
 			        bw.close();
