@@ -29,9 +29,11 @@ public void random(){
 	    		ultima_posicion=ultima_posicion+1;
 	    		System.out.println("contador :"+c1);
 	    		System.out.println("posicion :"+ultima_posicion);
+	    		System.out.println("");
 	    		
 	    		}else{
 	    			System.out.println("Proceso terminado");
+	    			System.out.println("");
 	    			t1=1;
 	    		}
 	    		}else{
@@ -48,9 +50,11 @@ public void random(){
 	    		ultima_posicion=ultima_posicion+1;
 	    		System.out.println("contador :"+c2);
 	    		System.out.println("posicion :"+ultima_posicion);
+	    		System.out.println("");
 	    		
 	    		}else{
 	    			System.out.println("Proceso terminado");
+	    			System.out.println("");
 	    			t2=1;
 	    		}
 	    		}else{
@@ -67,9 +71,11 @@ public void random(){
 	    			ultima_posicion=ultima_posicion-1;
 	    		
 	    		System.out.println("posicion : "+ultima_posicion);	
+	    		System.out.println("");
 	    		}else{
 	    			System.out.println("ya te encuentras en la posicion 0");
 	    			System.out.println("posicion : "+ultima_posicion);
+	    			System.out.println("");
 	    		}
 	    		break;
 	    	}//fin del switch
@@ -84,6 +90,7 @@ public void random(){
 	    		t3=0;
 	    		System.out.println("Proceso terminado");
 	    		System.out.println("Posicion actual: "+ultima_posicion);
+	    		System.out.println("");
 	    		}else{
 	    			System.out.println("Buffer vacio");
 	    			t3=1;
@@ -94,18 +101,21 @@ public void random(){
 	    		t3=0;
 	    		System.out.println("Proceso terminado");
 	    		System.out.println("Posicion actual: "+ultima_posicion);
+	    		System.out.println("");
 	    		}else{
 	    			System.out.println("Buffer vacio");
 	    			t3=1;
 	    		}
 	    		break;
 	    	case 3:
+	    		if(ultima_posicion>0){
 	    		t3=0;
 	    		borraBuffer();
-	    		if(ultima_posicion>0){
-	    			ultima_posicion=ultima_posicion-1;
+	    		
+	    		ultima_posicion=ultima_posicion-1;
 	    		
 	    		System.out.println("posicion : "+ultima_posicion);	
+	    		System.out.println("");
 	    		}else{
 	    			System.out.println("Buffer vacio");
 	    			System.out.println("posicion : "+ultima_posicion);
@@ -126,6 +136,7 @@ public void numeroBuffer(){
 	
 	System.out.println("posicion del buffer: "+i+" "+"Elemento del buffer: "+buffer[i]);
 	}
+
 }
 public void letraBuffer(){
 	Random random = new Random();
@@ -136,6 +147,7 @@ public void letraBuffer(){
 	
 	System.out.println("posicion del buffer: "+i+" "+"Elemento del buffer: "+buffer[i]);
 	}
+	
 }
 public void borraBuffer(){
 	if(ultima_posicion>0){
