@@ -1,4 +1,6 @@
-package nuevo;
+  package nuevo;
+
+import javax.swing.JTextArea;
 
 public class Practica3 {
 
@@ -6,6 +8,7 @@ public class Practica3 {
 		// TODO Auto-generated method stub
 		Practica3_metodos uno= new Practica3_metodos();
 		uno.random();
+		
 		
 	}//fin del main
 }//fin de la clase
